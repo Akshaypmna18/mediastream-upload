@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mediastream-upload — vanilla demo</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f4ef;
+        --ink: #1a1a1a;
+        --muted: #5c5c5c;
+        --accent: #0b6e4f;
+        --line: #d9d4c8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+        background: radial-gradient(1200px 600px at 10% -10%, #e8f0ea, transparent),
+          var(--bg);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 2rem 1.25rem 3rem;
+      }
+      main {
+        max-width: 42rem;
+        margin: 0 auto;
+      }
+      h1 {
+        font-family: "IBM Plex Serif", Georgia, serif;
+        font-weight: 600;
+        font-size: 1.75rem;
+        margin: 0 0 0.35rem;
+      }
+      p.lead {
+        color: var(--muted);
+        margin: 0 0 1.5rem;
+        line-height: 1.5;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      button {
+        font: inherit;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink);
+        padding: 0.55rem 0.9rem;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      #status {
+        font-variant-numeric: tabular-nums;
+        padding: 0.65rem 0.8rem;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+      video {
+        width: 100%;
+        background: #111;
+        border-radius: 8px;
+        aspect-ratio: 16 / 9;
+        display: block;
+      }
+      .meta {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      a {
+        color: var(--accent);
+      }
+      code {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 0.85em;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Serif:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <h1>mediastream-upload</h1>
+      <p class="lead">
+        Vanilla demo: camera → composite WebM chunks → mock or live backend.
+      </p>
+
+      <div class="row">
+        <button type="button" class="primary" id="btn-start">Start</button>
+        <button type="button" id="btn-stop" disabled>Stop</button>
+        <button type="button" id="btn-destroy" disabled>Destroy</button>
+      </div>
+
+      <div id="status">state: idle · backend: mock</div>
+      <video id="preview" playsinline muted></video>
+      <video id="result" controls playsinline hidden></video>
+
+      <p class="meta">
+        Default uses an in-memory mock backend (playback via <code>blob:</code> URL).
+        For a real API:
+        <code>?backend=https://your-worker.example.com</code>
+        · Serve from the package root after
+        <code>pnpm build</code>. See
+        <a href="../README.md">examples README</a>.
+      </p>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
