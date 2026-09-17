@@ -61,7 +61,8 @@
     "test:watch": "vitest",
     "lint": "biome check .",
     "format": "biome check --write .",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "example:react": "pnpm --dir examples/react dev"
   },
   "dependencies": {},
   "devDependencies": {

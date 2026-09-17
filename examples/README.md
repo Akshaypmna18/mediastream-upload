@@ -9,19 +9,16 @@ pnpm install
 pnpm build
 ```
 
-Serve the **package root** (so `/dist` and `/examples` resolve):
-
-```bash
-pnpm dlx serve .
-```
-
-Then open the example URL printed by `serve` (typically `http://localhost:3000/examples/vanilla-js/`).
-
 Use **localhost** or HTTPS — `getUserMedia` is blocked on insecure origins.
 
 ## vanilla-js
 
 Plain HTML + ES modules. No framework.
+
+```bash
+pnpm dlx serve .
+# → http://localhost:3000/examples/vanilla-js/
+```
 
 | Mode | How |
 |------|-----|
@@ -31,3 +28,15 @@ Plain HTML + ES modules. No framework.
 Controls: Start / Stop / Destroy. Status line shows `ChunkRecorder` state.
 
 See [vanilla-js/](./vanilla-js/).
+
+## react
+
+Vite + React. Local `useChunkRecorderDemo` hook wraps the headless class API —
+**not** a published React package.
+
+```bash
+pnpm example:react
+# → http://localhost:5173
+```
+
+Same mock / `?backend=` modes as vanilla. See [react/](./react/).

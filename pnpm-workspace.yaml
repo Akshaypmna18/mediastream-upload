@@ -1,2 +1,6 @@
+packages:
+  - "."
+  - "examples/react"
+
 allowBuilds:
   esbuild: true
