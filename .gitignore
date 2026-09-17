@@ -1,0 +1,10 @@
+node_modules
+dist
+*.tsbuildinfo
+coverage
+.DS_Store
+tsup.config.bundled_*.mjs
+.vite-temp
+node_modules/.vite-temp
+foss
+.cursor
