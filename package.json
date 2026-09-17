@@ -1,0 +1,79 @@
+{
+  "name": "mediastream-upload",
+  "version": "0.1.0",
+  "description": "Composite live MediaStreams and upload them incrementally as seekable WebM chunks during the session",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Akshay",
+    "url": "https://github.com/akshaypmna18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshaypmna18/mediastream-upload.git"
+  },
+  "homepage": "https://github.com/akshaypmna18/mediastream-upload#readme",
+  "bugs": "https://github.com/akshaypmna18/mediastream-upload/issues",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "mediastream",
+    "mediarecorder",
+    "webm",
+    "chunked-upload",
+    "realtime",
+    "browser"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "docs",
+    "examples",
+    "LICENSE",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./adapters/r2": {
+      "types": "./dist/adapters/r2/index.d.ts",
+      "import": "./dist/adapters/r2/index.js",
+      "require": "./dist/adapters/r2/index.cjs"
+    },
+    "./adapters/s3": {
+      "types": "./dist/adapters/s3/index.d.ts",
+      "import": "./dist/adapters/s3/index.js",
+      "require": "./dist/adapters/s3/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "changeset": "changeset"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
+    "@changesets/cli": "^2.29.5",
+    "happy-dom": "^18.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@12.4.1"
+}
