@@ -1,8 +1,16 @@
 # mediastream-upload
 
+[![npm version](https://img.shields.io/npm/v/mediastream-upload.svg)](https://www.npmjs.com/package/mediastream-upload)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/mediastream-upload)](https://bundlephobia.com/package/mediastream-upload)
+
 Composite live browser `MediaStream`s and upload them as **seekable WebM chunks during the session** — not one giant blob at the end.
 
-Zero runtime dependencies. Backend-agnostic (`init` / `sendChunk` / `finalize` / `abort`). R2 and S3 HTTP adapters included.
+```text
+Traditional:  [==== 10m Recording ====] ---> [== 45s Upload ==] ---> Done
+With Library: [==== 10m Rec + Live Chunks ====] -> [0.5s Finalize] -> Done
+```
+
+[npm](https://www.npmjs.com/package/mediastream-upload) · [Docs](./docs/getting-started.md) · [Examples](./examples/) · **0 dependencies** · **Backend-agnostic**
 
 ## Install
 
