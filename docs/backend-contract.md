@@ -100,7 +100,13 @@ When `finalize({ abrupt: true })` succeeds:
 4. Store repaired key; set `seekRepairStatus` to `done` / `failed` / `skipped`.
 5. Do not block the finalize HTTP response on repair.
 
-Algorithm reference: package `webmSeekRepair` / `repairAbruptWebmSeekability` (pure EBML).
+Algorithm reference: package export `repairAbruptWebmSeekability` (pure EBML).
+
+### Reference sample (local, no cloud)
+
+Runnable Tier A server (filesystem storage + Range): [`examples/backend/`](../examples/backend/).
+It implements the wire protocol for Normal End demos. Abrupt repair is documented
+there as a production checklist / optional sketch — not required for the happy path.
 
 ---
 
@@ -142,3 +148,5 @@ Algorithm reference: package `webmSeekRepair` / `repairAbruptWebmSeekability` (p
 | `mediastream-upload/adapters/s3` | `createS3Backend(baseUrl)` | PHP/S3-shaped API |
 
 Shared implementation: `adapters/http-base.ts`. Swapping adapters proves the core is backend-agnostic.
+
+**Local sample server:** [`examples/backend/`](../examples/backend/) — Express + disk, port `8787`, works with `createR2Backend("http://127.0.0.1:8787")`.

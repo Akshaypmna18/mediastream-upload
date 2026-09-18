@@ -39,7 +39,7 @@ Call `start()` from a **user gesture**. Details: [docs/getting-started.md](./doc
 | [Backend contract](./docs/backend-contract.md) | Integrator spec |
 | [Testing](./docs/TESTING.md) | What CI proves |
 
-Demo: [vanilla-js](./examples/vanilla-js/) · [react](./examples/react/) (`pnpm build` → `pnpm dlx serve .` or `pnpm example:react`).
+Demo: [vanilla-js](./examples/vanilla-js/) · [react](./examples/react/) · [sample backend](./examples/backend/) (`pnpm example:backend`, then `?backend=http://127.0.0.1:8787`).
 
 ## Develop
 

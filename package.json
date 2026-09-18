@@ -62,7 +62,8 @@
     "lint": "biome check .",
     "format": "biome check --write .",
     "changeset": "changeset",
-    "example:react": "pnpm --dir examples/react dev"
+    "example:react": "pnpm --dir examples/react dev",
+    "example:backend": "pnpm --dir examples/backend dev"
   },
   "dependencies": {},
   "devDependencies": {

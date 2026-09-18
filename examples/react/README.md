@@ -30,4 +30,6 @@ Open the Vite URL (typically `http://localhost:5173`). Use **localhost** or HTTP
 | **Mock backend** (default) | In-memory parts → `blob:` playback URL |
 | **Live backend** | `?backend=https://your-api.example.com` → `createR2Backend` |
 
+Also works with the local sample: `?backend=http://127.0.0.1:8787` (see [../backend/](../backend/)).
+
 Controls: Start / Stop / Destroy. Status shows recorder state + backend label.
