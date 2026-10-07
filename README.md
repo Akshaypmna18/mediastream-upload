@@ -10,7 +10,7 @@ Traditional:  [==== 10m Recording ====] ---> [== 45s Upload ==] ---> Done
 With Library: [==== 10m Rec + Live Chunks ====] -> [0.5s Finalize] -> Done
 ```
 
-[npm](https://www.npmjs.com/package/mediastream-upload) · [Docs](./docs/getting-started.md) · [Examples](./examples/) · **0 dependencies** · **Backend-agnostic**
+[Website](https://akshaypmna18.github.io/mediastream-upload/) · [npm](https://www.npmjs.com/package/mediastream-upload) · [Live demo](https://akshaypmna18.github.io/mediastream-upload/examples/react) · **0 dependencies** · **Backend-agnostic**
 
 ## Install
 
@@ -35,9 +35,11 @@ await recorder.start({
 const { videoUrl, localBlob } = await recorder.stop();
 ```
 
-Call `start()` from a **user gesture**. Details: [docs/getting-started.md](./docs/getting-started.md).
+Call `start()` from a **user gesture**. Full guide: [Website → Guide](https://akshaypmna18.github.io/mediastream-upload/guide) · repo [docs/getting-started.md](./docs/getting-started.md).
 
 ## Docs
+
+Prefer the **[documentation site](https://akshaypmna18.github.io/mediastream-upload/)** (guide, API, backend, live demo). Repo mirrors:
 
 | Doc | Purpose |
 |-----|---------|
@@ -47,16 +49,17 @@ Call `start()` from a **user gesture**. Details: [docs/getting-started.md](./doc
 | [Backend contract](./docs/backend-contract.md) | Integrator spec |
 | [Testing](./docs/TESTING.md) | What CI proves |
 
-Demo: [vanilla-js](./examples/vanilla-js/) · [react](./examples/react/) · [sample backend](./examples/backend/) (`pnpm example:backend`, then `?backend=http://127.0.0.1:8787`).
+Local demos: [vanilla-js](./examples/vanilla-js/) · [react](./examples/react/) · [sample backend](./examples/backend/).
 
 ## Develop
 
 ```bash
 pnpm install
 pnpm lint && pnpm typecheck && pnpm test && pnpm build
+pnpm example:website   # docs site locally
 ```
 
-First publish is **`0.1.0`**. Ship `1.0.0` only when the public API is intentionally stable.
+**Current release is `1.0.0`** — public API is stable. Use SemVer for breaking changes.
 
 ## License
 

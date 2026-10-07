@@ -1,7 +1,9 @@
 # Architecture
 
 **Package:** `mediastream-upload`  
-**Status:** Frozen for Phase 1 extraction (behavior matches the proven reference implementation; packaging only).
+**Status:** Stable (`1.0.0`). Behavior matches the proven reference implementation.
+
+Primary docs UX: [documentation site](https://akshaypmna18.github.io/mediastream-upload/) (no architecture page on the site — this file remains the deep dive).
 
 This document describes how the library turns live browser `MediaStream`s into an incrementally uploaded, seekable WebM artifact — without the host managing recording, buffering, retries, or seek repair.
 
@@ -31,9 +33,9 @@ Composite live sources, record continuously, and upload sealed multipart chunks 
 
 **Host owns:** auth, privacy UX, what “paused” means when `backpressured`, post-failure recovery product flows.
 
-### Out of scope (Phase 1)
+### Out of scope (library core)
 
-- Framework wrappers (React/Vue/Svelte)
+- Framework wrappers (React/Vue/Svelte) as published packages
 - Publish CI automation (manual Changesets only)
 - True cross-reload resumability, IndexedDB buffering, fragmented MP4 / Safari chunk path
 

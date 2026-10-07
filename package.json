@@ -1,6 +1,6 @@
 {
   "name": "mediastream-upload",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Composite live MediaStreams and upload them incrementally as seekable WebM chunks during the session",
   "type": "module",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/akshaypmna18/mediastream-upload.git"
   },
-  "homepage": "https://github.com/akshaypmna18/mediastream-upload#readme",
+  "homepage": "https://akshaypmna18.github.io/mediastream-upload/",
   "bugs": "https://github.com/akshaypmna18/mediastream-upload/issues",
   "publishConfig": {
     "access": "public"
@@ -63,9 +63,10 @@
     "format": "biome check --write .",
     "changeset": "changeset",
     "example:react": "pnpm --dir examples/react dev",
-    "example:backend": "pnpm --dir examples/backend dev"
+    "example:backend": "pnpm --dir examples/backend dev",
+    "example:website": "pnpm --dir website dev"
   },
-  "dependencies": {},
+  "packageManager": "pnpm@12.5.1",
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
     "@changesets/cli": "^2.29.5",
@@ -76,6 +77,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "packageManager": "pnpm@12.4.1"
+  }
 }

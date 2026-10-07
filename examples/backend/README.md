@@ -4,6 +4,8 @@ Minimal **Node + Express** server that implements
 [`docs/backend-contract.md`](../../docs/backend-contract.md) on the local
 filesystem. No Cloudflare account, R2, or AWS required.
 
+Readable overview: [Website → Backend](https://akshaypmna18.github.io/mediastream-upload/backend).
+
 Use it with the vanilla / React demos via `createR2Backend` (same HTTP wire):
 
 ```text

@@ -1,10 +1,11 @@
 # React example
 
 Vite + React demo that wraps the **headless** `ChunkRecorder` API in a local hook
-(`useChunkRecorderDemo`). This is **not** a published React package — official
-`useChunkRecorder` is a future phase.
+(`useChunkRecorderDemo`). This is **not** a published React package.
 
-## Run
+**Hosted:** [Live demo on the docs site](https://akshaypmna18.github.io/mediastream-upload/examples/react)
+
+## Run locally
 
 From the **repo root**:
 

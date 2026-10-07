@@ -1,0 +1,255 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f5f0;
+  --bg-soft: #efebe3;
+  --ink: #161616;
+  --muted: #5a5a5a;
+  --accent: #0b6e4f;
+  --accent-ink: #ffffff;
+  --line: #d4cfc4;
+  --code-bg: #ebe6dc;
+  --max: 52rem;
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-serif: "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(900px 420px at 8% -8%, #e3ebe5, transparent 55%),
+    var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--accent);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 88%, white);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.site-header-inner {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  font-size: 0.95rem;
+}
+
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--accent);
+}
+
+.site-main {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.prose {
+  max-width: var(--max);
+}
+
+.prose h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+.prose h2 {
+  font-size: 1.25rem;
+  margin: 2rem 0 0.65rem;
+}
+
+.prose p.lead {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0 0 1.25rem;
+}
+
+.prose p {
+  margin: 0 0 1rem;
+}
+
+.prose ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.timeline {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0 0 1.5rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  padding: 0.55rem 0.95rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 1.5rem;
+}
+
+.meta-row a {
+  text-decoration: none;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  padding: 0.55rem 0.4rem;
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+}
+
+.demo-panel {
+  max-width: 42rem;
+}
+
+.demo-status {
+  font-variant-numeric: tabular-nums;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  margin: 0.85rem 0;
+  font-size: 0.95rem;
+}
+
+.demo-panel video {
+  width: 100%;
+  background: #111;
+  border-radius: 8px;
+  aspect-ratio: 16 / 9;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.88rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  border-left: 3px solid var(--line);
+  padding-left: 0.85rem;
+  margin: 1rem 0 1.5rem;
+}

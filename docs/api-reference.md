@@ -1,6 +1,8 @@
 # API Reference
 
-Public surface of **`mediastream-upload`**. All types and the `ChunkRecorder` class are exported from the package root. Adapters are separate entry points.
+Public surface of **`mediastream-upload`**. Prefer the [Website → API](https://akshaypmna18.github.io/mediastream-upload/api) page for a quick scan; this file is the repo mirror.
+
+All types and the `ChunkRecorder` class are exported from the package root. Adapters are separate entry points.
 
 See also [TESTING.md](./TESTING.md) for what automated tests cover vs browser-only behavior.
 

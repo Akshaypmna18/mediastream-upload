@@ -10,6 +10,7 @@ pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm example:website   # optional — docs site
 ```
 
 ## Commits

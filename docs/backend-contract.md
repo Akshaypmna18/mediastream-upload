@@ -105,8 +105,8 @@ Algorithm reference: package export `repairAbruptWebmSeekability` (pure EBML).
 ### Reference sample (local, no cloud)
 
 Runnable Tier A server (filesystem storage + Range): [`examples/backend/`](../examples/backend/).
-It implements the wire protocol for Normal End demos. Abrupt repair is documented
-there as a production checklist / optional sketch — not required for the happy path.
+Readable overview: [Website → Backend](https://akshaypmna18.github.io/mediastream-upload/backend).
+Abrupt repair is documented as a production checklist / optional sketch — not required for the happy path.
 
 ---
 
@@ -150,3 +150,5 @@ there as a production checklist / optional sketch — not required for the happy
 Shared implementation: `adapters/http-base.ts`. Swapping adapters proves the core is backend-agnostic.
 
 **Local sample server:** [`examples/backend/`](../examples/backend/) — Express + disk, port `8787`, works with `createR2Backend("http://127.0.0.1:8787")`.
+
+**Docs site:** [Backend guide](https://akshaypmna18.github.io/mediastream-upload/backend).

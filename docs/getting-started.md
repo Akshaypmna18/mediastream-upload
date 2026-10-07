@@ -54,7 +54,7 @@ const { videoUrl, localBlob } = await recorder.stop();
 
 Call `start()` from a **user gesture** so `AudioContext` can resume.
 
-Interactive demo: [examples/vanilla-js](../examples/vanilla-js/) (see [examples/README.md](../examples/README.md)).
+Interactive demo: [documentation site](https://akshaypmna18.github.io/mediastream-upload/examples/react) · local [examples/vanilla-js](../examples/vanilla-js/).
 Test coverage honesty: [TESTING.md](./TESTING.md).
 
 ---
@@ -164,10 +164,10 @@ try {
 
 ---
 
-## Next Phase (not in v0.1)
+## Next (optional)
 
-- React hook / Vue composable / Svelte store wrappers
+- Framework wrappers (React hook / Vue / Svelte) as separate packages
 - Automated Changesets publish CI
 - Playwright E2E for real `MediaRecorder` behavior
 
-See [architecture.md](./architecture.md) and [api-reference.md](./api-reference.md).
+See the [documentation site](https://akshaypmna18.github.io/mediastream-upload/), [architecture.md](./architecture.md), and [api-reference.md](./api-reference.md).

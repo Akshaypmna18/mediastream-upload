@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-09-23
+
+### Added
+
+- Documentation site on GitHub Pages (guide, API, backend, live demo)
+- Sample Express backend under `examples/backend/` (Tier A contract reference)
+
+### Changed
+
+- Public API marked **stable** (`1.0.0`)
+- README / docs point at the website as the primary front door
+
 ## [0.1.0] - 2026-09-16
 
 ### Added

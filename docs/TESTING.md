@@ -31,7 +31,7 @@ These require a real browser (and often a real network / codec stack):
 - End-to-end `pagehide` keepalive finalize / abrupt seek repair against R2 or S3
 - HTTP Range scrub of a sealed object in a `<video>` element
 
-**Do not treat green CI as “recording works in Chrome.”** Use the [vanilla example](../examples/vanilla-js/) plus a real backend (or the mock backend for local playback) for smoke checks. Playwright (or similar) is a reasonable stretch goal, not part of v0.1.
+**Do not treat green CI as “recording works in Chrome.”** Use the [live demo](https://akshaypmna18.github.io/mediastream-upload/examples/react), the [vanilla example](../examples/vanilla-js/), plus a real backend (or the mock backend for local playback) for smoke checks. Playwright (or similar) is a reasonable stretch goal.
 
 ## Manual smoke checklist
 
