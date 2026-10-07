@@ -1,0 +1,16 @@
+# Never ship install/cache/runtime artifacts inside examples/
+**/node_modules/**
+**/.vite/**
+**/.vite-temp/**
+**/dist/**
+
+# Local sample-backend uploads (keep .gitkeep only)
+examples/backend/data/**
+!examples/backend/data/.gitkeep
+
+# Dev / editor / site (site is GitHub Pages, not the npm package)
+website/
+.cursor/
+coverage/
+*.tsbuildinfo
+.DS_Store

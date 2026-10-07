@@ -8,3 +8,7 @@ tsup.config.bundled_*.mjs
 node_modules/.vite-temp
 foss
 .cursor
+
+# Sample backend local uploads
+examples/backend/data/**
+!examples/backend/data/.gitkeep
