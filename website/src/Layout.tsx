@@ -94,6 +94,8 @@ export function Layout() {
     return () => document.removeEventListener("pointerdown", onPointer);
   }, [themeOpen]);
 
+  const isHome = location.pathname === "/";
+
   return (
     <div className="site">
       <header className="site-header">
@@ -175,17 +177,9 @@ export function Layout() {
           </nav>
         </div>
       </header>
-      <main className="shell site-main">
+      <main className={isHome ? "site-main" : "shell site-main"}>
         <Outlet />
       </main>
-      <footer className="site-footer">
-        <div className="shell">
-          MIT ·{" "}
-          <a href="https://github.com/akshaypmna18/mediastream-upload">
-            akshaypmna18/mediastream-upload
-          </a>
-        </div>
-      </footer>
     </div>
   );
 }

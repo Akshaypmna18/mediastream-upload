@@ -1,3 +1,4 @@
+import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 const github = "https://github.com/akshaypmna18/mediastream-upload";
@@ -29,7 +30,8 @@ function useStarCount() {
 export function HomePage() {
 
   return (
-    <article>
+    <>
+    <article className="shell home">
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-copy">
           <ul className="hero-badges">
@@ -202,20 +204,145 @@ export function HomePage() {
         </div>
       </section>
 
-      <div className="prose">
-        <h2>Why it exists</h2>
-        <p>
-          Typical recorders wait until stop, then upload tens of megabytes.
-          This library composites main + optional PiP, seals multipart chunks at
-          5&nbsp;MiB while you are still live, and patches Duration / SeekHead /
-          Cues so remote scrub works when upload completes.
-        </p>
+      <section className="features" aria-labelledby="features-title">
+        <header className="features-head">
+          <h2 id="features-title">Why choose mediastream-upload?</h2>
+          <p>
+            A production-ready approach to browser media recording and incremental
+            upload.
+          </p>
+        </header>
+        <ul className="feature-grid">
+          <li>
+            <article className="feature-card">
+              <span className="feature-icon" aria-hidden="true">
+                <ZapIcon />
+              </span>
+              <div>
+                <h3>Incremental upload</h3>
+                <p>Upload 5 MiB chunks while recording. No large upload at the end.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article className="feature-card">
+              <span className="feature-icon" aria-hidden="true">
+                <CirclePlayIcon />
+              </span>
+              <div>
+                <h3>Seekable WebM</h3>
+                <p>Generates proper Duration, SeekHead and Cues for a seekable file.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article className="feature-card">
+              <span className="feature-icon" aria-hidden="true">
+                <VideoCamIcon />
+              </span>
+              <div>
+                <h3>PiP composition</h3>
+                <p>
+                  Combine the main source with optional camera or screen PiP in
+                  real time.
+                </p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article className="feature-card">
+              <span className="feature-icon" aria-hidden="true">
+                <ShieldCheckIcon />
+              </span>
+              <div>
+                <h3>Retry &amp; backpressure</h3>
+                <p>
+                  Automatic retries, exponential backoff and network backpressure
+                  handling.
+                </p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article className="feature-card">
+              <span className="feature-icon" aria-hidden="true">
+                <BoxIcon />
+              </span>
+              <div>
+                <h3>R2 / S3 adapters</h3>
+                <p>Ready-to-use adapters for Cloudflare R2 and AWS S3.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article className="feature-card">
+              <span className="feature-icon" aria-hidden="true">
+                <SettingsIcon />
+              </span>
+              <div>
+                <h3>Backend-agnostic</h3>
+                <p>Implement your own backend with a simple four-method contract.</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
 
-        <h2>Install</h2>
-        <pre>{`pnpm add mediastream-upload`}</pre>
+      <QuickStartSection />
+    </article>
+    <footer className="home-footer">
+      <div className="shell">
+        <ul className="stats">
+          <li>
+            <CodeStatIcon />
+            <span>
+              <strong>0</strong>
+              Runtime dependencies
+            </span>
+          </li>
+          <li>
+            <BoxIcon />
+            <span>
+              <strong>5 MiB</strong>
+              Chunk size (default)
+            </span>
+          </li>
+          <li>
+            <WifiIcon />
+            <span>
+              <strong>3</strong>
+              Retry attempts
+            </span>
+          </li>
+          <li>
+            <FileStatIcon />
+            <span>
+              <strong>WebM</strong>
+              VP9 / VP8 + Opus
+            </span>
+          </li>
+          <li>
+            <GlobeIcon />
+            <span>
+              <strong>Modern browsers</strong>
+              Chrome, Firefox, Edge, Safari
+            </span>
+          </li>
+          <li>
+            <LockIcon />
+            <span>
+              <strong>MIT</strong>
+              Open source
+            </span>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    </>
+  );
+}
 
-        <h2>Quick start</h2>
-        <pre>{`import { ChunkRecorder } from "mediastream-upload";
+const QUICK_START = `import { ChunkRecorder } from "mediastream-upload";
 import { createR2Backend } from "mediastream-upload/adapters/r2";
 
 const stream = await navigator.mediaDevices.getUserMedia({
@@ -230,36 +357,139 @@ await recorder.start({
   backend: createR2Backend("https://your-api.example.com"),
 });
 
-const { videoUrl, localBlob } = await recorder.stop();`}</pre>
+const { videoUrl, localBlob } = await recorder.stop();`;
 
-        <p className="note">
-          Call <code>start()</code> from a user gesture so{" "}
-          <code>AudioContext</code> can resume. Use HTTPS or localhost for{" "}
-          <code>getUserMedia</code>.
-        </p>
+const QUICK_START_LINES = QUICK_START.split("\n");
 
-        <h2>Where to go next</h2>
-        <ul>
-          <li>
-            <Link to="/guide">Guide</Link> — camera, PiP, errors
-          </li>
-          <li>
-            <Link to="/api">API</Link> — public surface &amp; state machine
-          </li>
-          <li>
-            <Link to="/backend">Backend</Link> — four methods + sample server
-          </li>
-          <li>
-            <Link to="/examples/react">Live demo</Link> — Network-tab friendly
-          </li>
-          <li>
-            <Link to="/examples/vanilla">Vanilla walkthrough</Link> — same flow
-            without React
-          </li>
-        </ul>
+function QuickStartSection() {
+  const [copied, setCopied] = useState(false);
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(QUICK_START);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* leave the button as Copy if clipboard is blocked */
+    }
+  }
+
+  return (
+    <section className="start" aria-labelledby="quick-start-title">
+      <div className="start-grid">
+        <div className="start-code">
+          <header>
+            <h2 id="quick-start-title">Quick start</h2>
+            <p>Start recording and uploading in a few lines of code.</p>
+          </header>
+          <div className="code-card">
+            <div className="code-toolbar">
+              <span className="code-badge">TypeScript</span>
+              <button
+                type="button"
+                className="code-copy"
+                onClick={copy}
+                aria-label="Copy quick-start TypeScript example"
+              >
+                {copied ? <CheckIcon /> : <CopyIcon />}
+                {copied ? "Copied" : "Copy"}
+              </button>
+            </div>
+            <pre className="code-body">
+              {QUICK_START_LINES.map((line, index) => (
+                <span className="code-line" key={index}>
+                  <span className="code-n">{index + 1}</span>
+                  <span>{highlightLine(line)}</span>
+                </span>
+              ))}
+            </pre>
+          </div>
+        </div>
+
+        <div className="start-caps">
+          <header>
+            <h2>What you get</h2>
+            <p>A lightweight, TypeScript-first library with a simple API.</p>
+          </header>
+          <ul className="cap-list">
+            <li>
+              <span className="cap-icon" aria-hidden="true">
+                <LayersIcon />
+              </span>
+              <div>
+                <h3>ChunkRecorder</h3>
+                <p>start(), stop(), destroy(), getState(), getEmergencyBlob()</p>
+              </div>
+            </li>
+            <li>
+              <span className="cap-icon" aria-hidden="true">
+                <ShieldCheckIcon />
+              </span>
+              <div>
+                <h3>Zero dependencies</h3>
+                <p>Works in modern browsers. No runtime dependencies.</p>
+              </div>
+            </li>
+            <li>
+              <span className="cap-icon" aria-hidden="true">
+                <TsMark />
+              </span>
+              <div>
+                <h3>TypeScript</h3>
+                <p>Full TypeScript support and types.</p>
+              </div>
+            </li>
+            <li>
+              <span className="cap-icon" aria-hidden="true">
+                <MonitorIcon />
+              </span>
+              <div>
+                <h3>Flexible sources</h3>
+                <p>MediaStream, camera, screen or compatible video element.</p>
+              </div>
+            </li>
+            <li>
+              <span className="cap-icon" aria-hidden="true">
+                <SettingsIcon />
+              </span>
+              <div>
+                <h3>Configurable recording</h3>
+                <p>Resolution, frame rate, MIME type, chunk size and more.</p>
+              </div>
+            </li>
+            <li>
+              <span className="cap-icon" aria-hidden="true">
+                <LockKeyIcon />
+              </span>
+              <div>
+                <h3>Seekable output</h3>
+                <p>Seekable WebM with proper metadata for smooth playback.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-    </article>
+    </section>
   );
+}
+
+function highlightLine(line: string): ReactNode {
+  if (line.trim().startsWith("//")) {
+    return <span className="tok-c">{line}</span>;
+  }
+
+  const tokens = line.split(/("(?:[^"\\]|\\.)*"|[A-Za-z_][\w]*|\s+|.)/g).filter(Boolean);
+  return tokens.map((token, index) => {
+    if (token.startsWith('"')) return <span className="tok-s" key={index}>{token}</span>;
+    if (/^(import|from|const|await|new|true)$/.test(token)) {
+      return <span className="tok-k" key={index}>{token}</span>;
+    }
+    if (token === "ChunkRecorder") return <span className="tok-t" key={index}>{token}</span>;
+    if (/^(createR2Backend|getUserMedia|start|stop)$/.test(token)) {
+      return <span className="tok-f" key={index}>{token}</span>;
+    }
+    return token;
+  });
 }
 
 function ArrowIcon() {
@@ -409,6 +639,191 @@ function CloudIcon() {
         strokeLinejoin="round"
       />
     </svg>
+  );
+}
+
+function FeatureGlyph({ children }: { children: ReactNode }) {
+  return (
+    <svg
+      className="feature-glyph"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {children}
+    </svg>
+  );
+}
+
+function ZapIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M4 14 14 3v7h6L10 21v-7z" />
+    </FeatureGlyph>
+  );
+}
+
+function CirclePlayIcon() {
+  return (
+    <FeatureGlyph>
+      <circle cx="12" cy="12" r="10" />
+      <polygon points="10 8 16 12 10 16 10 8" />
+    </FeatureGlyph>
+  );
+}
+
+function VideoCamIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
+      <rect x="2" y="6" width="14" height="12" rx="2" />
+    </FeatureGlyph>
+  );
+}
+
+function ShieldCheckIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+      <path d="m9 12 2 2 4-4" />
+    </FeatureGlyph>
+  );
+}
+
+function BoxIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+      <path d="m3.3 7 8.7 5 8.7-5" />
+      <path d="M12 22V12" />
+    </FeatureGlyph>
+  );
+}
+
+function SettingsIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+      <circle cx="12" cy="12" r="3" />
+    </FeatureGlyph>
+  );
+}
+
+function LayersIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.09a1 1 0 0 0 0 1.82l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+      <path d="M2 12.03 8.59 15a2 2 0 0 0 1.66 0L17 12" />
+      <path d="M2 17.03 8.59 20a2 2 0 0 0 1.66 0L17 17" />
+    </FeatureGlyph>
+  );
+}
+
+function MonitorIcon() {
+  return (
+    <FeatureGlyph>
+      <rect width="20" height="14" x="2" y="3" rx="2" />
+      <path d="M8 21h8" />
+      <path d="M12 17v4" />
+    </FeatureGlyph>
+  );
+}
+
+function LockKeyIcon() {
+  return (
+    <FeatureGlyph>
+      <rect width="18" height="11" x="3" y="11" rx="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      <circle cx="12" cy="16" r="1" />
+    </FeatureGlyph>
+  );
+}
+
+function TsMark() {
+  return (
+    <svg className="ts-mark" viewBox="0 0 24 24" aria-hidden="true">
+      <rect width="24" height="24" rx="4" fill="currentColor" />
+      <text
+        x="12"
+        y="16.5"
+        textAnchor="middle"
+        fill="#fff"
+        fontSize="9"
+        fontWeight="700"
+        fontFamily="Inter, sans-serif"
+      >
+        TS
+      </text>
+    </svg>
+  );
+}
+
+function CopyIcon() {
+  return (
+    <FeatureGlyph>
+      <rect width="14" height="14" x="8" y="8" rx="2" />
+      <path d="M4 16V6a2 2 0 0 1 2-2h10" />
+    </FeatureGlyph>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M20 6 9 17l-5-5" />
+    </FeatureGlyph>
+  );
+}
+
+function CodeStatIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="m16 18 6-6-6-6" />
+      <path d="m8 6-6 6 6 6" />
+    </FeatureGlyph>
+  );
+}
+
+function WifiIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M12 20h.01" />
+      <path d="M2 8.82a15 15 0 0 1 20 0" />
+      <path d="M5 12.86a10 10 0 0 1 14 0" />
+      <path d="M8.5 16.43a5 5 0 0 1 7 0" />
+    </FeatureGlyph>
+  );
+}
+
+function FileStatIcon() {
+  return (
+    <FeatureGlyph>
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    </FeatureGlyph>
+  );
+}
+
+function GlobeIcon() {
+  return (
+    <FeatureGlyph>
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </FeatureGlyph>
+  );
+}
+
+function LockIcon() {
+  return (
+    <FeatureGlyph>
+      <rect width="18" height="11" x="3" y="11" rx="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </FeatureGlyph>
   );
 }
 
