@@ -96,6 +96,7 @@ export function Layout() {
 
   const isHome = location.pathname === "/";
   const isGuide = location.pathname === "/guide";
+  const isApi = location.pathname === "/api";
 
   return (
     <div className="site">
@@ -178,7 +179,7 @@ export function Layout() {
           </nav>
         </div>
       </header>
-      <main className={isHome || isGuide ? "site-main" : "shell site-main"}>
+      <main className={isHome || isGuide || isApi ? "site-main" : "shell site-main"}>
         <Outlet />
       </main>
     </div>
