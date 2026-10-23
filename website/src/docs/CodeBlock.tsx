@@ -73,7 +73,11 @@ function highlightLine(line: string, language: "shell" | "typescript" | "text"):
   if (language === "text") return line;
 
   const trimmed = line.trimStart();
-  if (trimmed.startsWith("//") || trimmed.startsWith("/*")) {
+  if (
+    trimmed.startsWith("//") ||
+    trimmed.startsWith("/*") ||
+    trimmed.startsWith("#")
+  ) {
     return <span className="tok-c">{line}</span>;
   }
 
@@ -96,15 +100,21 @@ function highlightLine(line: string, language: "shell" | "typescript" | "text"):
     if (/^(import|from|const|await|new|true|false|try|catch|if|instanceof|throw)$/.test(token)) {
       return <span className="tok-k" key={index}>{token}</span>;
     }
-    if (/^(ChunkRecorder|UnsupportedBrowserError|SourceInitializationError)$/.test(token)) {
+    if (/^(ChunkRecorder|UnsupportedBrowserError|SourceInitializationError|boolean|void)$/.test(token)) {
       return <span className="tok-t" key={index}>{token}</span>;
     }
-    if (/^(createR2Backend|createS3Backend|getUserMedia|start|stop)$/.test(token)) {
+    if (/^(createR2Backend|createS3Backend|getUserMedia|start|stop|init|sendChunk|finalize|abort)$/.test(token)) {
       return <span className="tok-f" key={index}>{token}</span>;
     }
-    if (token === "=>") return <span className="tok-o" key={index}>{token}</span>;
+    if (token === "=>" || token === "→") return <span className="tok-o" key={index}>{token}</span>;
     const next = tokens.slice(index + 1).find((part) => part.trim());
+    if (/^[A-Za-z_][\w]*$/.test(token) && next === "?") {
+      return <span className="tok-t" key={index}>{token}</span>;
+    }
     if (/^[A-Za-z_][\w]*$/.test(token) && next === ":") {
+      return <span className="tok-p" key={index}>{token}</span>;
+    }
+    if (/^[A-Za-z_][\w]*$/.test(token) && (next === "," || next === ")" || next === "}" || next === ".")) {
       return <span className="tok-p" key={index}>{token}</span>;
     }
     return token;
@@ -121,10 +131,12 @@ function highlightLine(line: string, language: "shell" | "typescript" | "text"):
 
 function inlineCommentIndex(line: string): number {
   let inString = false;
-  for (let i = 0; i < line.length - 1; i++) {
+  for (let i = 0; i < line.length; i++) {
     const char = line[i];
     if (char === '"' && line[i - 1] !== "\\") inString = !inString;
-    if (!inString && char === "/" && line[i + 1] === "/") return i;
+    if (inString) continue;
+    if (char === "/" && line[i + 1] === "/") return i;
+    if (char === "#" && (i === 0 || /\s/.test(line[i - 1]))) return i;
   }
   return -1;
 }
