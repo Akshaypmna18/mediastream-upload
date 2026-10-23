@@ -67,6 +67,7 @@ export function useDemoRecorder() {
   const start = useCallback(async () => {
     setError(null);
     revokeResultUrl();
+    setBusy(true);
     try {
       const camera = await navigator.mediaDevices.getUserMedia({
         video: true,
@@ -86,7 +87,6 @@ export function useDemoRecorder() {
         backend,
         playbackToSpeakers: false,
       });
-      setBusy(true);
     } catch (err) {
       stopTracks();
       recorderRef.current = null;

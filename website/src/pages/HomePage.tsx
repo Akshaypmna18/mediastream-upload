@@ -270,7 +270,10 @@ export function HomePage() {
               </span>
               <div>
                 <h3>R2 / S3 adapters</h3>
-                <p>Ready-to-use adapters for Cloudflare R2 and AWS S3.</p>
+                <p>
+                  HTTP clients for your R2- or S3-shaped API — not the cloud SDKs
+                  themselves.
+                </p>
               </div>
             </article>
           </li>

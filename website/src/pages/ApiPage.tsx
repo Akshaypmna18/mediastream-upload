@@ -150,8 +150,8 @@ export function ApiPage() {
               align="center"
             />
             <p className="docs-api-note">
-              Buffer pressure: ≥15 MiB → degraded; ≥50 MiB → backpressured (capture
-              pauses).
+              Degraded and backpressured are optional. ≥15 MiB → degraded; ≥50 MiB →
+              backpressured (capture pauses).
             </p>
           </section>
 
@@ -205,8 +205,25 @@ export function ApiPage() {
             <h2>Also exported</h2>
             <p>Additional helpers for utility use cases.</p>
             <div className="docs-api-export">
+              <code>PART_SIZE</code>
+              <p>5 MiB non-final part size.</p>
+              <code>DEGRADED_BYTES / BACKPRESSURE_BYTES</code>
+              <p>15 MiB degraded; 50 MiB backpressured (capture pauses).</p>
+              <code>ChunkRecorderError</code>
+              <p>Base class for the typed errors above.</p>
               <code>repairAbruptWebmSeekability</code>
               <p>Fixes WebM metadata for backend parity on abrupt finalize.</p>
+              <div className="docs-api-export-names">
+                <code>scanWebmForSeekMetadata</code>
+                <code>scanBlobsForSeekMetadata</code>
+                <code>patchDurationSameSize</code>
+                <code>patchSeekHeadCuesSameSize</code>
+                <code>ensureDurationPatchable</code>
+                <code>ensureSeekHeadReservable</code>
+                <code>buildCuesElement</code>
+                <code>SEEKHEAD_RESERVE_BYTES</code>
+              </div>
+              <p>Other WebM seek helpers for Duration, SeekHead, and Cues.</p>
             </div>
           </section>
         </div>
@@ -224,6 +241,6 @@ const API_IMPORTS = `import {
 import { createR2Backend } from "mediastream-upload/adapters/r2";
 // or: import { createS3Backend } from "mediastream-upload/adapters/s3";`;
 
-const STATE_MACHINE = `idle → initializing → recording → degraded → backpressured
-↓
-finalizing → completed | failed | cancelled`;
+const STATE_MACHINE = `idle → initializing → recording → finalizing → completed | failed | cancelled
+
+optional: recording → degraded → backpressured`;
