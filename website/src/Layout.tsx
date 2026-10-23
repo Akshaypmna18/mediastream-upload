@@ -95,6 +95,7 @@ export function Layout() {
   }, [themeOpen]);
 
   const isHome = location.pathname === "/";
+  const isGuide = location.pathname === "/guide";
 
   return (
     <div className="site">
@@ -177,7 +178,7 @@ export function Layout() {
           </nav>
         </div>
       </header>
-      <main className={isHome ? "site-main" : "shell site-main"}>
+      <main className={isHome || isGuide ? "site-main" : "shell site-main"}>
         <Outlet />
       </main>
     </div>
